@@ -7,17 +7,16 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class OrdersService {
-
   constructor(@InjectModel(Order.name) private orderModel: Model<Order>) {}
 
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
+    // return 'This action adds a new order';
     const createdOrder = new this.orderModel(createOrderDto);
     return createdOrder.save();
   }
 
   async findAll() {
     return this.orderModel.find();
-
   }
 
   findOne(id: number) {

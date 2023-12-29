@@ -3,11 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { OrdersModule } from './orders/orders.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.DB_URL),
     OrdersModule,
-    MongooseModule.forRoot('mongodb+srv://admin:12344321@cluster0.bjcpg0b.mongodb.net/nest?retryWrites=true&w=majority'),
   ],
   controllers: [AppController],
   providers: [AppService],
