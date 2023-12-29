@@ -17,12 +17,18 @@ export class PaymentService {
     return createdPayment.save();
   }
 
-  findAll() {
-    return `This action returns all payment`;
+  async findAll() {
+    // return `This action returns all payment`;
+    return this.paymentModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} payment`;
+  // findOne(id: String) {
+  //   return this.paymentModel.findOne(id);
+  // }
+
+  async findOne(id: string): Promise<Payment | null> {
+    console.log(id);
+    return this.paymentModel.findOne({_id:id});
   }
 
   update(id: number, updatePaymentDto: UpdatePaymentDto) {
